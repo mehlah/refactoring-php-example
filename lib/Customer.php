@@ -25,15 +25,9 @@ class Customer {
 		$rentals = $this->_rentals;
 
 		$result = "Rental records for {$this->getName()} \n";
-		foreach ($rentals as $rental) {
-			// add frequent renter points
-			$frequentRenterPoints++;
 
-			// add bonus for a two days new release rental
-			if (($rental->getMovie()->getPriceCode() == Movie::NEW_RELEASE) &&
-				($rental->getDaysRented() > 1)) {
-					$frequentRenterPoints++;
-			}
+		foreach ($rentals as $rental) {
+			$frequentRenterPoints += $rental->getFrequentRenterPoints();
 
 			// show figures for this rental
 			$result .= "{$rental->getMovie()->getTitle()} \t {$rental->getCharge()} \n";
