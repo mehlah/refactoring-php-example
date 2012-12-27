@@ -26,8 +26,6 @@ class Customer {
 
 		$result = "Rental records for {$this->getName()} \n";
 		foreach ($rentals as $rental) {
-			$thisAmount = $rental->getCharge();
-
 			// add frequent renter points
 			$frequentRenterPoints++;
 
@@ -38,9 +36,9 @@ class Customer {
 			}
 
 			// show figures for this rental
-			$result .= "{$rental->getMovie()->getTitle()} \t {$thisAmount} \n";
+			$result .= "{$rental->getMovie()->getTitle()} \t {$rental->getCharge()} \n";
 
-			$totalAmount += $thisAmount;
+			$totalAmount += $rental->getCharge();
 		}
 
 		$result .= "Amount owned is {$totalAmount} \n";
