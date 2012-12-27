@@ -26,7 +26,7 @@ class Customer {
 
 		$result = "Rental records for {$this->getName()} \n";
 		foreach ($rentals as $rental) {
-			$thisAmount = $this->amountFor($rental);
+			$thisAmount = $rental->getCharge();
 
 			// add frequent renter points
 			$frequentRenterPoints++;
@@ -47,10 +47,6 @@ class Customer {
 		$result .= "You earned {$frequentRenterPoints} frequent renter points";
 
 		return $result;
-	}
-
-	private function amountFor(Rental $rental) {
-		return $rental->getCharge();
 	}
 }
 
