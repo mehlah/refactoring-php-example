@@ -20,24 +20,32 @@ class Customer {
 	}
 
 	public function statement() {
-		$totalAmount = 0;
-		$frequentRenterPoints = 0;
-		$rentals = $this->_rentals;
-
 		$result = "Rental records for {$this->getName()} \n";
 
-		foreach ($rentals as $rental) {
-			$frequentRenterPoints += $rental->getFrequentRenterPoints();
-
+		foreach ($this->_rentals as $rental) {
 			// show figures for this rental
 			$result .= "{$rental->getMovie()->getTitle()} \t {$rental->getCharge()} \n";
-
-			$totalAmount += $rental->getCharge();
 		}
 
-		$result .= "Amount owned is {$totalAmount} \n";
-		$result .= "You earned {$frequentRenterPoints} frequent renter points";
+		$result .= "Amount owned is {$this->getTotalCharge()} \n";
+		$result .= "You earned {$this->getTotalFrequentRenterPoints()} frequent renter points";
 
+		return $result;
+	}
+
+	private function getTotalCharge() {
+		$result = 0;
+		foreach ($this->_rentals as $rental) {
+			$result += $rental->getCharge();
+		}
+		return $result;
+	}
+
+	private function getTotalFrequentRenterPoints() {
+		$result = 0;
+		foreach ($this->_rentals as $rental) {
+			$result += $rental->getFrequentRenterPoints();
+		}
 		return $result;
 	}
 }
