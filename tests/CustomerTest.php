@@ -1,6 +1,6 @@
 <?php
 
-require 'lib/Customer.php';
+require_once 'lib/Customer.php';
 
 class CustomerTest extends PHPUnit_Framework_TestCase {
 
