@@ -5,6 +5,10 @@ require_once 'Movie.php';
 abstract class Price {
 	abstract public function getPriceCode();
 	abstract public function getCharge($daysRented);
+
+	public function getFrequentRenterPoints($daysRented) {
+		return 1;
+	}
 }
 
 class ChildrensPrice extends Price {
@@ -29,6 +33,10 @@ class NewReleasePrice extends Price {
 
 	public function getCharge($daysRented) {
 		return $daysRented * 3;
+	}
+
+	public function getFrequentRenterPoints($daysRented) {
+		return ($daysRented > 1) ? 2: 1;
 	}
 }
 
