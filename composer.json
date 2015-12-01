@@ -1,5 +1,9 @@
 {
-    "require": {
+    "require-dev": {
+        "crysalead/kahlan": "^1.2",
         "phpunit/phpunit": "3.7.*"
+    },
+    "config": {
+        "bin-dir": "bin"
     }
 }
